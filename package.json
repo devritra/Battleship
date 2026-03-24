@@ -1,7 +1,7 @@
 {
-    "name": "template-repository",
+    "name": "battleship",
     "version": "1.0.0",
-    "description": "My template repo which i use as the starting template for my projects",
+    "description": "",
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,15 +15,15 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/devritra/Template-Repository.git"
+        "url": "git+https://github.com/devritra/Battleship.git"
     },
     "keywords": [],
-    "author": "",
+    "author": "Aritra Saha",
     "license": "ISC",
     "bugs": {
-        "url": "https://github.com/devritra/Template-Repository/issues"
+        "url": "https://github.com/devritra/Battleship/issues"
     },
-    "homepage": "https://github.com/devritra/Template-Repository#readme",
+    "homepage": "https://github.com/devritra/Battleship#readme",
     "devDependencies": {
         "@eslint/js": "^9.39.1",
         "css-loader": "^7.1.2",
