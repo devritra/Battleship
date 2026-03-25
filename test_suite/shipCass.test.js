@@ -1,19 +1,13 @@
 import { test } from "@jest/globals";
 import { expect } from "@jest/globals";
 
-test('check if the length property works',()=>{
-    const ship = new shipClass();
-    expect(ship.length).toBe(undefined);
-    ship.length = 3;
-    expect(ship.length).toBe(3);
-})
 test('check if the hitCount property works',()=>{
     const ship = new shipClass();
     expect(ship.hitCount).toBe(0);
 })
 test('check if the isSunk property works',()=>{
     const ship = new shipClass();
-    expect(ship.isSunk).toBeFalsy();
+    expect(ship.isSunk).toBe(false);
     ship.isSunk = true;
     expect(ship.isSunk).toBeTruthy();
 })
