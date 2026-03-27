@@ -3,6 +3,10 @@ import { expect } from "@jest/globals";
 
 test('check if the hitCount property works',()=>{
     const ship = new shipClass();
+    expect(ship).toHaveProperty('length');
+})
+test('check if the hitCount property works',()=>{
+    const ship = new shipClass();
     expect(ship.hitCount).toBe(0);
 })
 test('check if the isSunk property works',()=>{
