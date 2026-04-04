@@ -3,6 +3,8 @@ export class shipClass{
         this.length = undefined;
         this.hitCount = 0;
         this.isSunk = false;
+        this.shipId = Crypto.randomUUID();
+        this.shipCoordinates = [];
     }
 
     hit(){
