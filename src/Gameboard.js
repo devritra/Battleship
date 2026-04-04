@@ -15,7 +15,6 @@ export class Gameboard{
         switch (direction) {
             case 'up':
                 for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 'c';
                     switch (ship.type) {
                         case 'carrier':
                             this.grid[i][coordinates[1]] = 'c';
