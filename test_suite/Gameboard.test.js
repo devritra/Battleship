@@ -41,6 +41,44 @@ test('Place the carrier starting from (9,0) to the up', ()=>{
         ]
     )
 })
+test('Place the carrier starting from (1,2) to the down', ()=>{
+    const gameboard = new Gameboard();
+    gameboard.placeCarrier([1,2],'down');
+    console.log(gameboard.grid);
+    expect(gameboard.grid).toEqual(
+        [
+            [,,,,,,,,,],
+            [,,'c',,,,,,,],
+            [,,'c',,,,,,,],
+            [,,'c',,,,,,,],
+            [,,'c',,,,,,,],
+            [,,'c',,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,]
+        ]
+    )
+})
+test('Place the carrier starting from (3,8) to the left', ()=>{
+    const gameboard = new Gameboard();
+    gameboard.placeCarrier([3,8],'left');
+    console.log(gameboard.grid);
+    expect(gameboard.grid).toEqual(
+        [
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,'c','c','c','c','c',],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,]
+        ]
+    )
+})
 test('Place the battleship starting from (6,1) to the right', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeBattleship([9,5],'right');

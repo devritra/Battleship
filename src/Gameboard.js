@@ -30,7 +30,7 @@ export class Gameboard{
                 break;
             case 'left':
                 for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 'c';
+                    this.grid[coordinates[0]][i] = 'c';
                 }
                 break;
             default:
