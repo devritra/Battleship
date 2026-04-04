@@ -11,157 +11,234 @@ export class Gameboard{
         this.ships = [];
     }
 
-    placeCarrierOnGrid(ship, coordinates, direction){
-        switch (direction) {
-            case 'up':
-                for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 'c';
-                }
-                break;
-            case 'right':
-                for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
-                    this.grid[coordinates[0]][i] = 'c';
-                }
-                break;
-            case 'down':
-                for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
-                    this.grid[i][coordinates[1]] = 'c';
-                }
-                break;
-            case 'left':
-                for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
-                    this.grid[coordinates[0]][i] = 'c';
-                }
-                break;
-            default:
-                break;
-        }
-    }
-    placeBattleshipOnGrid(ship, coordinates, direction){
-        switch (direction) {
-            case 'up':
-                for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 'b';
-                }
-                break;
-            case 'right':
-                for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
-                    this.grid[coordinates[0]][i] = 'b';
-                }
-                break;
-            case 'down':
-                for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
-                    this.grid[i][coordinates[1]] = 'b';
-                }
-                break;
-            case 'left':
-                for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 'b';
-                }
-                break;
-            default:
-                break;
-        }
-    }
-    placeDestroyerOnGrid(ship, coordinates, direction){
-        switch (direction) {
-            case 'up':
-                for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 'd';
-                }
-                break;
-            case 'right':
-                for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
-                    this.grid[coordinates[0]][i] = 'd';
-                }
-                break;
-            case 'down':
-                for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
-                    this.grid[i][coordinates[1]] = 'd';
-                }
-                break;
-            case 'left':
-                for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 'd';
-                }
-                break;
-            default:
-                break;
-        }
-    }
-    placeSubmarineOnGrid(ship, coordinates, direction){
-        switch (direction) {
-            case 'up':
-                for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 's';
-                }
-                break;
-            case 'right':
-                for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
-                    this.grid[coordinates[0]][i] = 's';
-                }
-                break;
-            case 'down':
-                for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
-                    this.grid[i][coordinates[1]] = 's';
-                }
-                break;
-            case 'left':
-                for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 's';
-                }
-                break;
-            default:
-                break;
-        }
-    }
-    placePatrolBoatOnGrid(ship, coordinates, direction){
-        switch (direction) {
-            case 'up':
-                for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 'p';
-                }
-                break;
-            case 'right':
-                for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
-                    this.grid[coordinates[0]][i] = 'p';
-                }
-                break;
-            case 'down':
-                for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
-                    this.grid[i][coordinates[1]] = 'p';
-                }
-                break;
-            case 'left':
-                for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
-                    this.grid[i][coordinates[1]] = 'p';
-                }
-                break;
-            default:
-                break;
-        }
-    }
     placeShipOnGrid(ship, coordinates, direction){
-        switch (ship.type) {
-            case 'carrier':
-                this.placeCarrierOnGrid(ship, coordinates, direction);
+        switch (direction) {
+            case 'up':
+                for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
+                    this.grid[i][coordinates[1]] = 'c';
+                    switch (ship.type) {
+                        case 'carrier':
+                            this.grid[i][coordinates[1]] = 'c';
+                            break;
+                        case 'battleship':
+                            this.grid[i][coordinates[1]] = 'b';
+                            break;
+                        case 'destroyer':
+                            this.grid[i][coordinates[1]] = 'd';
+                            break;
+                        case 'submarine':
+                            this.grid[i][coordinates[1]] = 's';
+                            break;
+                        case 'patrol boat':
+                            this.grid[i][coordinates[1]] = 'p';
+                            break;
+                        default:
+                            break;
+                    }
+                    ship.shipCoordinates.push([i,coordinates[1]]);
+                }
                 break;
-            case 'battleship':
-                this.placeBattleshipOnGrid(ship, coordinates, direction);
+            case 'right':
+                for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
+                    switch (ship.type) {
+                        case 'carrier':
+                            this.grid[coordinates[0]][i] = 'c';
+                            break;
+                        case 'battleship':
+                            this.grid[coordinates[0]][i] = 'b';
+                            break;
+                        case 'destroyer':
+                            this.grid[coordinates[0]][i] = 'd';
+                            break;
+                        case 'submarine':
+                            this.grid[coordinates[0]][i] = 's';
+                            break;
+                        case 'patrol boat':
+                            this.grid[coordinates[0]][i] = 'p';
+                            break;
+                        default:
+                            break;
+                    }
+                    ship.shipCoordinates.push([coordinates[0],i]);
+                }
                 break;
-            case 'destroyer':
-                this.placeDestroyerOnGrid(ship, coordinates, direction);
+            case 'down':
+                for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
+                    switch (ship.type) {
+                        case 'carrier':
+                            this.grid[i][coordinates[1]] = 'c';
+                            break;
+                        case 'battleship':
+                            this.grid[i][coordinates[1]] = 'b';
+                            break;
+                        case 'destroyer':
+                            this.grid[i][coordinates[1]] = 'd';
+                            break;
+                        case 'submarine':
+                            this.grid[i][coordinates[1]] = 's';
+                            break;
+                        case 'patrol boat':
+                            this.grid[i][coordinates[1]] = 'p';
+                            break;
+                        default:
+                            break;
+                    }
+                    ship.shipCoordinates.push([i,coordinates[1]]);
+                }
                 break;
-            case 'submarine':
-                this.placeSubmarineOnGrid(ship, coordinates, direction);
-                break;
-            case 'patrol boat':
-                this.placePatrolBoatOnGrid(ship, coordinates, direction);
+            case 'left':
+                for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
+                    switch (ship.type) {
+                        case 'carrier':
+                            this.grid[coordinates[0]][i] = 'c';
+                            break;
+                        case 'battleship':
+                            this.grid[coordinates[0]][i] = 'b';
+                            break;
+                        case 'destroyer':
+                            this.grid[coordinates[0]][i] = 'd';
+                            break;
+                        case 'submarine':
+                            this.grid[coordinates[0]][i] = 's';
+                            break;
+                        case 'patrol boat':
+                            this.grid[coordinates[0]][i] = 'p';
+                            break;
+                        default:
+                            break;
+                    }
+                    ship.shipCoordinates.push([coordinates[0],i]);
+                }
                 break;
             default:
                 break;
         }
     }
+    // placeBattleshipOnGrid(ship, coordinates, direction){
+    //     switch (direction) {
+    //         case 'up':
+    //             for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
+    //                 this.grid[i][coordinates[1]] = 'b';
+    //             }
+    //             break;
+    //         case 'right':
+    //             for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
+    //                 this.grid[coordinates[0]][i] = 'b';
+    //             }
+    //             break;
+    //         case 'down':
+    //             for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
+    //                 this.grid[i][coordinates[1]] = 'b';
+    //             }
+    //             break;
+    //         case 'left':
+    //             for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
+    //                 this.grid[i][coordinates[1]] = 'b';
+    //             }
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
+    // placeDestroyerOnGrid(ship, coordinates, direction){
+    //     switch (direction) {
+    //         case 'up':
+    //             for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
+    //                 this.grid[i][coordinates[1]] = 'd';
+    //             }
+    //             break;
+    //         case 'right':
+    //             for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
+    //                 this.grid[coordinates[0]][i] = 'd';
+    //             }
+    //             break;
+    //         case 'down':
+    //             for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
+    //                 this.grid[i][coordinates[1]] = 'd';
+    //             }
+    //             break;
+    //         case 'left':
+    //             for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
+    //                 this.grid[i][coordinates[1]] = 'd';
+    //             }
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
+    // placeSubmarineOnGrid(ship, coordinates, direction){
+    //     switch (direction) {
+    //         case 'up':
+    //             for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
+    //                 this.grid[i][coordinates[1]] = 's';
+    //             }
+    //             break;
+    //         case 'right':
+    //             for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
+    //                 this.grid[coordinates[0]][i] = 's';
+    //             }
+    //             break;
+    //         case 'down':
+    //             for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
+    //                 this.grid[i][coordinates[1]] = 's';
+    //             }
+    //             break;
+    //         case 'left':
+    //             for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
+    //                 this.grid[i][coordinates[1]] = 's';
+    //             }
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
+    // placePatrolBoatOnGrid(ship, coordinates, direction){
+    //     switch (direction) {
+    //         case 'up':
+    //             for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
+    //                 this.grid[i][coordinates[1]] = 'p';
+    //             }
+    //             break;
+    //         case 'right':
+    //             for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
+    //                 this.grid[coordinates[0]][i] = 'p';
+    //             }
+    //             break;
+    //         case 'down':
+    //             for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
+    //                 this.grid[i][coordinates[1]] = 'p';
+    //             }
+    //             break;
+    //         case 'left':
+    //             for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
+    //                 this.grid[i][coordinates[1]] = 'p';
+    //             }
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
+    // placeShipOnGrid(ship, coordinates, direction){
+    //     switch (ship.type) {
+    //         case 'carrier':
+    //             this.placeCarrierOnGrid(ship, coordinates, direction);
+    //             break;
+    //         case 'battleship':
+    //             this.placeBattleshipOnGrid(ship, coordinates, direction);
+    //             break;
+    //         case 'destroyer':
+    //             this.placeDestroyerOnGrid(ship, coordinates, direction);
+    //             break;
+    //         case 'submarine':
+    //             this.placeSubmarineOnGrid(ship, coordinates, direction);
+    //             break;
+    //         case 'patrol boat':
+    //             this.placePatrolBoatOnGrid(ship, coordinates, direction);
+    //             break;
+    //         default:
+    //             break;
+    //     }
+    // }
     carrier(){
         const carrier = new shipClass();
         carrier.length = 5;
