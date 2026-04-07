@@ -35,16 +35,76 @@ export class Gameboard{
                             }
                             break;
                         case 'battleship':
-                            this.grid[i][coordinates[1]] = 'b';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 'b';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 'b';
+                                    }
+                                }
+                            }
                             break;
                         case 'destroyer':
-                            this.grid[i][coordinates[1]] = 'd';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 'd';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 'd';
+                                    }
+                                }
+                            }
                             break;
                         case 'submarine':
-                            this.grid[i][coordinates[1]] = 's';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 's';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 's';
+                                    }
+                                }
+                            }
                             break;
                         case 'patrol boat':
-                            this.grid[i][coordinates[1]] = 'p';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 'p';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 'p';
+                                    }
+                                }
+                            }
                             break;
                         default:
                             break;
@@ -77,16 +137,76 @@ export class Gameboard{
                             // this.grid[coordinates[0]][i] = 'c';
                             break;
                         case 'battleship':
-                            this.grid[coordinates[0]][i] = 'b';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 'b';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 'b';
+                                    }
+                                }
+                            }
                             break;
                         case 'destroyer':
-                            this.grid[coordinates[0]][i] = 'd';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 'd';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 'd';
+                                    }
+                                }
+                            }
                             break;
                         case 'submarine':
-                            this.grid[coordinates[0]][i] = 's';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 's';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 's';
+                                    }
+                                }
+                            }
                             break;
                         case 'patrol boat':
-                            this.grid[coordinates[0]][i] = 'p';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 'p';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 'p';
+                                    }
+                                }
+                            }
                             break;
                         default:
                             break;
@@ -98,19 +218,94 @@ export class Gameboard{
                 for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
                     switch (ship.type) {
                         case 'carrier':
-                            this.grid[i][coordinates[1]] = 'c';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 'c';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 'c';
+                                    }
+                                }
+                            }
                             break;
                         case 'battleship':
-                            this.grid[i][coordinates[1]] = 'b';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 'b';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 'b';
+                                    }
+                                }
+                            }
                             break;
                         case 'destroyer':
-                            this.grid[i][coordinates[1]] = 'd';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 'd';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 'd';
+                                    }
+                                }
+                            }
                             break;
                         case 'submarine':
-                            this.grid[i][coordinates[1]] = 's';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 's';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 's';
+                                    }
+                                }
+                            }
                             break;
                         case 'patrol boat':
-                            this.grid[i][coordinates[1]] = 'p';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 'p';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 'p';
+                                    }
+                                }
+                            }
                             break;
                         default:
                             break;
@@ -122,19 +317,94 @@ export class Gameboard{
                 for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
                     switch (ship.type) {
                         case 'carrier':
-                            this.grid[coordinates[0]][i] = 'c';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 'c';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 'c';
+                                    }
+                                }
+                            }
                             break;
                         case 'battleship':
-                            this.grid[coordinates[0]][i] = 'b';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 'b';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 'b';
+                                    }
+                                }
+                            }
                             break;
                         case 'destroyer':
-                            this.grid[coordinates[0]][i] = 'd';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 'd';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 'd';
+                                    }
+                                }
+                            }
                             break;
                         case 'submarine':
-                            this.grid[coordinates[0]][i] = 's';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 's';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 's';
+                                    }
+                                }
+                            }
                             break;
                         case 'patrol boat':
-                            this.grid[coordinates[0]][i] = 'p';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 'p';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 'p';
+                                    }
+                                }
+                            }
                             break;
                         default:
                             break;
@@ -183,22 +453,22 @@ export class Gameboard{
     }
     placeBattleship(coordinates, direction){
         const battleship = this.battleship();
-        this.ships.push(battleship);
         this.placeShipOnGrid(battleship, coordinates, direction);
+        this.ships.push(battleship);
     }
     placeDestroyer(coordinates, direction){
         const destroyer = this.destroyer();
-        this.ships.push(destroyer);
         this.placeShipOnGrid(destroyer, coordinates, direction);
+        this.ships.push(destroyer);
     }
     placeSubmarine(coordinates, direction){
         const submarine = this.submarine();
-        this.ships.push(submarine);
         this.placeShipOnGrid(submarine, coordinates, direction);
+        this.ships.push(submarine);
     }
     placePatrolBoat(coordinates, direction){
         const patrolBoat = this.patrolBoat();
-        this.ships.push(patrolBoat);
         this.placeShipOnGrid(patrolBoat, coordinates, direction);
+        this.ships.push(patrolBoat);
     }
 }
