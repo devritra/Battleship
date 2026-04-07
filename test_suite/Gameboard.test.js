@@ -6,7 +6,6 @@ import { Gameboard } from "../src/Gameboard";
 test('Place the carrier starting from (9,5) to the right', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([9,5],'right');
-    console.log(gameboard.grid);
     expect(gameboard.grid).toEqual(
         [
             [,,,,,,,,,],
@@ -25,7 +24,6 @@ test('Place the carrier starting from (9,5) to the right', ()=>{
 test('Place the carrier starting from (9,0) to the up', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([9,0],'up');
-    console.log(gameboard.grid);
     expect(gameboard.grid).toEqual(
         [
             [,,,,,,,,,],
@@ -44,7 +42,6 @@ test('Place the carrier starting from (9,0) to the up', ()=>{
 test('Place the carrier starting from (1,2) to the down', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([1,2],'down');
-    console.log(gameboard.grid);
     expect(gameboard.grid).toEqual(
         [
             [,,,,,,,,,],
@@ -63,7 +60,6 @@ test('Place the carrier starting from (1,2) to the down', ()=>{
 test('Place the carrier starting from (3,8) to the left', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([3,8],'left');
-    console.log(gameboard.grid);
     expect(gameboard.grid).toEqual(
         [
             [,,,,,,,,,],
@@ -223,10 +219,12 @@ test('Place the patrol boat starting from (1,1) to the up', ()=>{
         ]
     )
 })
-test.skip('Check if the placement methods throws errors correctly', ()=>{
+test('Check if the placement methods throws errors correctly', ()=>{
     const gameboard = new Gameboard();
     gameboard.placePatrolBoat([9,0],'up');
-    expect(gameboard.placeCarrier((8,0),'right')).toThrow(new Error('Coordinate already occupied by another ship'));
+    expect(()=>{
+        gameboard.placeCarrier([8,0],'right');
+    }).toThrow('Coordinate already occupied by another ship');
     expect(gameboard.grid).toEqual(
         [
             [,,,,,,,,,],

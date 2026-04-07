@@ -17,7 +17,22 @@ export class Gameboard{
                 for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
                     switch (ship.type) {
                         case 'carrier':
-                            this.grid[i][coordinates[1]] = 'c';
+                            if(this.ships.length < 1){
+                                this.grid[i][coordinates[1]] = 'c';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[i][coordinates[1]] = 'c';
+                                    }
+                                }
+                            }
                             break;
                         case 'battleship':
                             this.grid[i][coordinates[1]] = 'b';
@@ -41,7 +56,25 @@ export class Gameboard{
                 for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
                     switch (ship.type) {
                         case 'carrier':
-                            this.grid[coordinates[0]][i] = 'c';
+                            if(this.ships.length < 1){
+                                this.grid[coordinates[0]][i] = 'c';
+                            } else {
+                                for(let i = 0; i < this.ships.length; i++){
+                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                        console.log(coordinate)
+                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                    })
+                                    console.log(isValid)
+                                    if(isValid){
+                                        throw new Error("Coordinate already occupied by another ship");
+                                    } else{
+                                        this.grid[coordinates[0]][i] = 'c';
+                                    }
+                                }
+                            }
+                            
+                            // console.log(this.ships)
+                            // this.grid[coordinates[0]][i] = 'c';
                             break;
                         case 'battleship':
                             this.grid[coordinates[0]][i] = 'b';
@@ -145,8 +178,8 @@ export class Gameboard{
     }
     placeCarrier(coordinates, direction){
         const carrier = this.carrier();
-        this.ships.push(carrier);
         this.placeShipOnGrid(carrier, coordinates, direction);
+        this.ships.push(carrier);
     }
     placeBattleship(coordinates, direction){
         const battleship = this.battleship();
