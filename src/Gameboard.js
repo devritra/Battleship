@@ -9,6 +9,9 @@ export class Gameboard{
             return arr;
         })();
         this.ships = [];
+        this.hitShots = [];
+        this.missedShots = [];
+        this.attackedCoordinates = [];
     }
 
     placeShipOnGrid(ship, coordinates, direction){
@@ -470,5 +473,30 @@ export class Gameboard{
         const patrolBoat = this.patrolBoat();
         this.placeShipOnGrid(patrolBoat, coordinates, direction);
         this.ships.push(patrolBoat);
+    }
+
+    receiveAttack(coordinates){
+        let isAlreadyAttacked = this.attackedCoordinates.some((coordinate)=>{
+            return JSON.stringify(coordinates) === JSON.stringify(coordinate);
+        })
+        if(isAlreadyAttacked){
+            return;
+        }
+        let isHit;
+        for(let i = 0; i < this.ships.length; i++){
+            isHit = this.ships[i].shipCoordinates.some((coordinate)=>{
+                return JSON.stringify(coordinates) === JSON.stringify(coordinate);
+            })
+            if(isHit){
+                this.grid[coordinates[0]][coordinates[1]] = 'h';
+                this.hitShots.push(coordinates);
+                break;
+            }
+        }
+        if(!isHit){
+            this.grid[coordinates[0]][coordinates[1]] = 'm';
+            this.missedShots.push(coordinates);
+        }
+        return;
     }
 }

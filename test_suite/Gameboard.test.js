@@ -240,7 +240,7 @@ test('Check if the placement methods throws errors correctly', ()=>{
         ]
     )
 })
-test.skip('Test the receiveAttack method (1)', ()=>{
+test('Test the receiveAttack method (1)', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([9,5],'right');
     gameboard.receiveAttack([9,9]);
@@ -262,13 +262,13 @@ test.skip('Test the receiveAttack method (1)', ()=>{
         ]
     )
 })
-test.skip('Test the receiveAttack method (2)', ()=>{
+test('Test the receiveAttack method (2)', ()=>{
     const gameboard = new Gameboard();
-    gameboard.placeDestroyer([1,1],'up');
-    gameboard.receiveAttack([1,2]);
-    expect(gameboard.hitShots).toEqual([[1,2]]);
-    gameboard.receiveAttack([1,5]);
-    expect(gameboard.missedShots).toEqual([[1,5]]);
+    gameboard.placeDestroyer([9,0],'up');
+    gameboard.receiveAttack([8,0]);
+    expect(gameboard.hitShots).toEqual([[8,0]]);
+    gameboard.receiveAttack([5,0]);
+    expect(gameboard.missedShots).toEqual([[5,0]]);
     expect(gameboard.grid).toEqual(
         [
             [,,,,,,,,,],
@@ -276,10 +276,10 @@ test.skip('Test the receiveAttack method (2)', ()=>{
             [,,,,,,,,,],
             [,,,,,,,,,],
             [,,,,,,,,,],
-            [,,,,,,,,,],
+            ['m',,,,,,,,,],
             [,,,,,,,,,],
             ['d',,,,,,,,,],
-            ['d',,,,,,,,,],
+            ['h',,,,,,,,,],
             ['d',,,,,,,,,]
         ]
     )
