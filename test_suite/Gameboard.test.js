@@ -240,6 +240,31 @@ test('Check if the placement methods throws errors correctly', ()=>{
         ]
     )
 })
+test('Check if the placement methods throws errors correctly', ()=>{
+    const gameboard = new Gameboard();
+    gameboard.placePatrolBoat([9,0],'up');
+    gameboard.placeCarrier([8,5],'left');
+    expect(gameboard.grid).toEqual(
+        [
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            ['p','c','c','c','c','c',,,,],
+            ['p',,,,,,,,,]
+        ]
+    )
+})
+test('Check if the placement methods throws errors correctly', ()=>{
+    const gameboard = new Gameboard();
+    expect(() => {
+        gameboard.placeCarrier([8,3],'left')
+    }).toThrow('Not enough space');
+})
 test('Test the receiveAttack method (1)', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([9,5],'right');

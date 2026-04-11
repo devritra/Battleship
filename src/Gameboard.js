@@ -15,18 +15,22 @@ export class Gameboard{
     }
 
     placeShipOnGrid(ship, coordinates, direction){
+        const maxCoordinate = this.grid.length;
         switch (direction) {
             case 'up':
+                if(ship.length > (coordinates[0] + 1)){
+                    throw new Error("Not enough space");
+                }
                 for(let i = coordinates[0]; i > (coordinates[0] - ship.length); i--){
                     switch (ship.type) {
                         case 'carrier':
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 'c';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -41,10 +45,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 'b';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -59,10 +63,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 'd';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -77,10 +81,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 's';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -95,10 +99,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 'p';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -116,16 +120,19 @@ export class Gameboard{
                 }
                 break;
             case 'right':
+                if(ship.length > (maxCoordinate - coordinates[1])){
+                    throw new Error("Not enough space");
+                }
                 for(let i = coordinates[1]; i < (ship.length + coordinates[1]); i++){
                     switch (ship.type) {
                         case 'carrier':
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 'c';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0], i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -143,10 +150,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 'b';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0], i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -161,10 +168,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 'd';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0], i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -179,10 +186,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 's';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0], i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -197,10 +204,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 'p';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0], i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -218,16 +225,19 @@ export class Gameboard{
                 }
                 break;
             case 'down':
+                if(ship.length > (maxCoordinate - coordinates[0])){
+                    throw new Error("Not enough space");
+                }
                 for(let i = coordinates[0]; i < (ship.length + coordinates[0]); i++){
                     switch (ship.type) {
                         case 'carrier':
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 'c';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -242,10 +252,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 'b';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -260,10 +270,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 'd';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -278,10 +288,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 's';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -296,10 +306,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[i][coordinates[1]] = 'p';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([i, coordinates[1]]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -317,16 +327,19 @@ export class Gameboard{
                 }
                 break;
             case 'left':
+                if(ship.length > (coordinates[1] + 1)){
+                    throw new Error("Not enough space");
+                }
                 for(let i = coordinates[1]; i > (coordinates[1] - ship.length); i--){
                     switch (ship.type) {
                         case 'carrier':
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 'c';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0],i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -341,10 +354,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 'b';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0],i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -359,10 +372,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 'd';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0],i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -377,10 +390,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 's';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0],i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
@@ -395,10 +408,10 @@ export class Gameboard{
                             if(this.ships.length < 1){
                                 this.grid[coordinates[0]][i] = 'p';
                             } else {
-                                for(let i = 0; i < this.ships.length; i++){
-                                    let isValid = this.ships[i].shipCoordinates.some((coordinate)=>{
+                                for(let j = 0; j < this.ships.length; j++){
+                                    let isValid = this.ships[j].shipCoordinates.some((coordinate)=>{
                                         console.log(coordinate)
-                                        return JSON.stringify(coordinate) === JSON.stringify(coordinates);
+                                        return JSON.stringify(coordinate) === JSON.stringify([coordinates[0],i]);
                                     })
                                     console.log(isValid)
                                     if(isValid){
