@@ -493,7 +493,8 @@ export class Gameboard{
             return JSON.stringify(coordinates) === JSON.stringify(coordinate);
         })
         if(isAlreadyAttacked){
-            return;
+            throw new Error("Invalid attack");
+            
         }
         let isHit;
         for(let i = 0; i < this.ships.length; i++){
@@ -503,12 +504,16 @@ export class Gameboard{
             if(isHit){
                 this.grid[coordinates[0]][coordinates[1]] = 'h';
                 this.hitShots.push(coordinates);
+                this.ships[i].hit();
+                this.ships[i].checkIfSunk();
+                this.attackedCoordinates.push(coordinates);
                 break;
             }
         }
         if(!isHit){
             this.grid[coordinates[0]][coordinates[1]] = 'm';
             this.missedShots.push(coordinates);
+            this.attackedCoordinates.push(coordinates);
         }
         return;
     }
