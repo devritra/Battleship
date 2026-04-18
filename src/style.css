@@ -3,7 +3,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 /* 3. Enable keyword animations */
@@ -96,4 +96,12 @@ p.about{
 }
 .direction{
   grid-column: 5/7;
+}
+.player1-name{
+  grid-column: 1/4;
+  justify-self: start;
+}
+.player2-name{
+  grid-column: 4/7;
+  justify-self: end;
 }
