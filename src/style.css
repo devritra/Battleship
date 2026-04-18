@@ -3,6 +3,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  border: 1px solid black;
 }
 
 /* 3. Enable keyword animations */
@@ -51,3 +52,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* A Modern CSS Reset by Josh Comeau above */
+
+.main{
+    width: 70vw;
+    margin: 0 auto;
+    padding: 40px;
+    display: grid;
+    gap: 20px;
+    justify-items: center;
+}
+h1{
+    font-size: 5rem;
+}
+p.about{
+  font-size: 1.2rem;
+}
+.game-box.home{
+  display: grid;
+  gap: 20px;
+  justify-items: center;
+}
