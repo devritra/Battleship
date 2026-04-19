@@ -1,9 +1,10 @@
 import { Gameboard } from "../src/Gameboard";
 
 export class Player{
+    wholeGameboardInstance = this.initGameboard();
     constructor(type){
         this.type = type;
-        this.gameboard = this.initGameboard();
+        this.gameboardGrid = this.wholeGameboardInstance.grid;
     }
 
     initGameboard(){
@@ -18,6 +19,6 @@ export class Player{
         gameboard.placePatrolBoat([0,7],'right')
         gameboard.placePatrolBoat([0,5],'down')
         gameboard.placePatrolBoat([5,6],'down');
-        return gameboard.grid;
+        return gameboard;
     }
 }
