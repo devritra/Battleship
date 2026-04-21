@@ -1,4 +1,4 @@
-export function loadGame(player1, player2){
+export function loadGame(){
     const gameBox = document.querySelector('.game-box');
     gameBox.innerHTML = '';
     gameBox.classList.remove('home');
@@ -26,31 +26,40 @@ export function loadGame(player1, player2){
 
     const player1grid = document.createElement('div');
     player1grid.classList.add('player1-grid');
-    for(let i = 0; i < player1.gameboardGrid.length; i++){
-        for(let j = 0; j < player1.gameboardGrid[i].length; j++){
+    for(let i = 0; i < 10; i++){
+        for(let j = 0; j < 10; j++){
             const gameboardCell = document.createElement('div');
             gameboardCell.classList.add('gameboard-cell');
-            switch (player1.gameboardGrid[i][j]) {
-                case 'c':
-                    gameboardCell.textContent = 'c';
-                    break;
-                case 'b':
-                    gameboardCell.textContent = 'b';
-                    break;
-                case 'd':
-                    gameboardCell.textContent = 'd';
-                    break;
-                case 's':
-                    gameboardCell.textContent = 's';
-                    break;
-                case 'p':
-                    gameboardCell.textContent = 'p';
-                    break;
-                default:
-                    break;
-            }
+            gameboardCell.classList.add(`[${i},${j}]`);
             player1grid.appendChild(gameboardCell);
         }
     }
     gameBox.appendChild(player1grid);
+
+    const player2grid = document.createElement('div');
+    player2grid.classList.add('player2-grid');
+    for(let i = 0; i < 10; i++){
+        for(let j = 0; j < 10; j++){
+            const gameboardCell = document.createElement('div');
+            gameboardCell.classList.add('gameboard-cell');
+            gameboardCell.classList.add(`[${i},${j}]`);
+            player2grid.appendChild(gameboardCell);
+        }
+    }
+    gameBox.appendChild(player2grid);
+
+    const shipName = document.createElement('div');
+    shipName.classList.add('ship-name');
+    shipName.textContent = 'ship'
+    gameBox.appendChild(shipName);
+
+    const coordinates = document.createElement('div');
+    coordinates.classList.add('coordinates');
+    coordinates.textContent = 'coordinates'
+    gameBox.appendChild(coordinates);
+
+    const direction = document.createElement('div');
+    direction.classList.add('direction');
+    direction.textContent = 'direction'
+    gameBox.appendChild(direction);
 }
