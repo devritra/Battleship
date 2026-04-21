@@ -19,6 +19,7 @@ export class Player{
         gameboard.placePatrolBoat([0,7],'right')
         gameboard.placePatrolBoat([0,5],'down')
         gameboard.placePatrolBoat([5,6],'down');
+        gameboard.createTheGrid();
         return gameboard;
     }
 }
