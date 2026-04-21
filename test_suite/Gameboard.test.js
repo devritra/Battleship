@@ -6,8 +6,7 @@ import { Gameboard } from "../src/Gameboard";
 test('Place the carrier starting from (9,5) to the right', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([9,5],'right');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -25,8 +24,7 @@ test('Place the carrier starting from (9,5) to the right', ()=>{
 test('Place the carrier starting from (9,0) to the up', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([9,0],'up');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -44,8 +42,7 @@ test('Place the carrier starting from (9,0) to the up', ()=>{
 test('Place the carrier starting from (1,2) to the down', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([1,2],'down');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,'c',,,,,,,],
@@ -63,8 +60,7 @@ test('Place the carrier starting from (1,2) to the down', ()=>{
 test('Place the carrier starting from (3,8) to the left', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([3,8],'left');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -82,8 +78,7 @@ test('Place the carrier starting from (3,8) to the left', ()=>{
 test('Place the battleship starting from (6,1) to the right', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeBattleship([9,5],'right');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -101,8 +96,7 @@ test('Place the battleship starting from (6,1) to the right', ()=>{
 test('Place the battleship starting from (1,1) to the up', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeBattleship([9,0],'up');
-    gameboard.createTheGrid()
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -120,8 +114,7 @@ test('Place the battleship starting from (1,1) to the up', ()=>{
 test('Place the destroyer starting from (6,1) to the right', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeDestroyer([9,5],'right');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -139,8 +132,7 @@ test('Place the destroyer starting from (6,1) to the right', ()=>{
 test('Place the destroyer starting from (1,1) to the up', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeDestroyer([9,0],'up');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -158,8 +150,7 @@ test('Place the destroyer starting from (1,1) to the up', ()=>{
 test('Place the submarine starting from (6,1) to the right', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeSubmarine([9,5],'right');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -177,8 +168,7 @@ test('Place the submarine starting from (6,1) to the right', ()=>{
 test('Place the submarine starting from (1,1) to the up', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeSubmarine([9,0],'up');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -196,8 +186,7 @@ test('Place the submarine starting from (1,1) to the up', ()=>{
 test('Place the patrol boat starting from (6,1) to the right', ()=>{
     const gameboard = new Gameboard();
     gameboard.placePatrolBoat([9,5],'right');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -215,8 +204,7 @@ test('Place the patrol boat starting from (6,1) to the right', ()=>{
 test('Place the patrol boat starting from (1,1) to the up', ()=>{
     const gameboard = new Gameboard();
     gameboard.placePatrolBoat([9,0],'up');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -237,8 +225,7 @@ test('Check if the placement methods throws errors correctly', ()=>{
     expect(()=>{
         gameboard.placeCarrier([8,0],'right');
     }).toThrow('Coordinate already occupied by another ship');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -257,8 +244,7 @@ test('Check if the placement methods throws errors correctly', ()=>{
     const gameboard = new Gameboard();
     gameboard.placePatrolBoat([9,0],'up');
     gameboard.placeCarrier([8,5],'left');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -286,8 +272,7 @@ test('Test the receiveAttack method (1)', ()=>{
     expect(gameboard.hitShots).toEqual([[9,9]]);
     gameboard.receiveAttack([8,9]);
     expect(gameboard.missedShots).toEqual([[8,9]]);
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -309,8 +294,7 @@ test('Test the receiveAttack method (2)', ()=>{
     expect(gameboard.hitShots).toEqual([[8,0]]);
     gameboard.receiveAttack([5,0]);
     expect(gameboard.missedShots).toEqual([[5,0]]);
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -335,8 +319,7 @@ test('Test the receiveAttack method (2)', ()=>{
     expect(()=>{
         gameboard.receiveAttack([5,0]);
     }).toThrow('Invalid attack');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -354,8 +337,7 @@ test('Test the receiveAttack method (2)', ()=>{
 test('Test the moveShip method', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([9,0],'up');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             [,,,,,,,,,],
             [,,,,,,,,,],
@@ -369,11 +351,9 @@ test('Test the moveShip method', ()=>{
             ['c',,,,,,,,,]
         ]
     )
-    console.log(gameboard.ships)
     const targetShipId = gameboard.ships[0].shipId;
     gameboard.moveShip(targetShipId, [0,0], 'right');
-    gameboard.createTheGrid();
-    expect(gameboard.grid).toEqual(
+    expect(gameboard.getTheGrid()).toEqual(
         [
             ['c','c','c','c','c',,,,,],
             [,,,,,,,,,],

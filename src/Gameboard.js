@@ -160,28 +160,28 @@ export class Gameboard {
         this.ships.splice(targetShipIndex, 1);
         this[`place${targetShipTypeFirstLetterCapitalised}`](coordinates, direction);
     }
-    createTheGrid(){
-        const arr = new Array(10);
-        for (let i = 0; i < arr.length; i++) {
-            arr[i] = new Array(10);
+    getTheGrid(){
+        const grid = new Array(10);
+        for (let i = 0; i < grid.length; i++) {
+            grid[i] = new Array(10);
         }
         this.ships.forEach(ship => {
             ship.shipCoordinates.forEach(coordinate => {
                 switch (ship.type) {
                     case 'carrier':
-                        arr[coordinate[0]][coordinate[1]] = 'c';        
+                        grid[coordinate[0]][coordinate[1]] = 'c';        
                         break;
                     case 'battleship':
-                        arr[coordinate[0]][coordinate[1]] = 'b';
+                        grid[coordinate[0]][coordinate[1]] = 'b';
                         break;
                     case 'destroyer':
-                        arr[coordinate[0]][coordinate[1]] = 'd';        
+                        grid[coordinate[0]][coordinate[1]] = 'd';        
                         break;
                     case 'submarine':
-                        arr[coordinate[0]][coordinate[1]] = 's';        
+                        grid[coordinate[0]][coordinate[1]] = 's';        
                         break;
                     case 'patrol boat':
-                        arr[coordinate[0]][coordinate[1]] = 'p';        
+                        grid[coordinate[0]][coordinate[1]] = 'p';        
                         break;
                     default:
                         break;
@@ -189,12 +189,12 @@ export class Gameboard {
             });
         });
         this.hitShots.forEach(coordinate => {
-            arr[coordinate[0]][coordinate[1]] = 'h';
+            grid[coordinate[0]][coordinate[1]] = 'h';
         });
         this.missedShots.forEach(coordinate => {
-            arr[coordinate[0]][coordinate[1]] = 'm';
+            grid[coordinate[0]][coordinate[1]] = 'm';
         });
-        this.grid = arr;
+        return grid;
     }
     carrier() {
         const carrier = new shipClass();
