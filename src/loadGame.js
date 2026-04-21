@@ -30,7 +30,7 @@ export function loadGame(){
         for(let j = 0; j < 10; j++){
             const gameboardCell = document.createElement('div');
             gameboardCell.classList.add('gameboard-cell');
-            gameboardCell.classList.add(`[${i},${j}]`);
+            gameboardCell.dataset.coordinates = `[${i},${j}]`;
             player1grid.appendChild(gameboardCell);
         }
     }
@@ -42,7 +42,7 @@ export function loadGame(){
         for(let j = 0; j < 10; j++){
             const gameboardCell = document.createElement('div');
             gameboardCell.classList.add('gameboard-cell');
-            gameboardCell.classList.add(`[${i},${j}]`);
+            gameboardCell.dataset.coordinates = `[${i},${j}]`;
             player2grid.appendChild(gameboardCell);
         }
     }
