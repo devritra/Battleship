@@ -149,6 +149,17 @@ export class Gameboard {
                 break;
         }
     }
+    moveShip(shipId, coordinates, direction){
+        const targetShipIndex = this.ships.findIndex((ship)=>{
+            return ship.shipId === shipId;
+        });
+        const targetShipType = this.ships[targetShipIndex].type;
+        let temp = targetShipType.split('');
+        temp[0] = targetShipType.charAt(0).toUpperCase();
+        const targetShipTypeFirstLetterCapitalised = temp.join('');
+        this.ships.splice(targetShipIndex, 1);
+        this[`place${targetShipTypeFirstLetterCapitalised}`](coordinates, direction);
+    }
     createTheGrid(){
         const arr = new Array(10);
         for (let i = 0; i < arr.length; i++) {

@@ -26,9 +26,6 @@ test('Place the carrier starting from (9,0) to the up', ()=>{
     const gameboard = new Gameboard();
     gameboard.placeCarrier([9,0],'up');
     gameboard.createTheGrid();
-    console.log(gameboard.ships)
-    console.log(gameboard.ships[0].shipCoordinates)
-    console.log(gameboard.grid)
     expect(gameboard.grid).toEqual(
         [
             [,,,,,,,,,],
@@ -351,6 +348,43 @@ test('Test the receiveAttack method (2)', ()=>{
             ['d',,,,,,,,,],
             ['h',,,,,,,,,],
             ['d',,,,,,,,,]
+        ]
+    )
+})
+test('Test the moveShip method', ()=>{
+    const gameboard = new Gameboard();
+    gameboard.placeCarrier([9,0],'up');
+    gameboard.createTheGrid();
+    expect(gameboard.grid).toEqual(
+        [
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            ['c',,,,,,,,,],
+            ['c',,,,,,,,,],
+            ['c',,,,,,,,,],
+            ['c',,,,,,,,,],
+            ['c',,,,,,,,,]
+        ]
+    )
+    console.log(gameboard.ships)
+    const targetShipId = gameboard.ships[0].shipId;
+    gameboard.moveShip(targetShipId, [0,0], 'right');
+    gameboard.createTheGrid();
+    expect(gameboard.grid).toEqual(
+        [
+            ['c','c','c','c','c',,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,],
+            [,,,,,,,,,]
         ]
     )
 })
