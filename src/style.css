@@ -96,15 +96,6 @@ p.about{
   grid-template-columns: 2fr 2fr 2fr 1fr;
   gap: 10px;
 }
-.ship-name{
-  /* grid-column: 1/3; */
-}
-.coordinates{
-  /* grid-column: 3/5; */
-}
-.direction{
-  /* grid-column: 5/7; */
-}
 .player1-name{
   grid-column: 1/2;
   justify-self: start;
