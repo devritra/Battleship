@@ -74,20 +74,20 @@ p.about{
 }
 .game-box.game{
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: 2fr 1.5fr 0.5fr;
   justify-items: center;
   gap: 10px;
 }
 .guide-text,
 .error-text{
   height: 25px;
-  grid-column: 1/3;
+  grid-column: 1/4;
 }
 .player1-grid{
   grid-column: 1/2;
 }
 .player2-grid{
-  grid-column: 2/3;
+  grid-column: 2/4;
 }
 .ship-placement-form{
   grid-column: 1/3;
@@ -101,7 +101,7 @@ p.about{
   justify-self: start;
 }
 .player2-name{
-  grid-column: 2/3;
+  grid-column: 2/4;
   justify-self: end;
 }
 .player1-grid,
@@ -147,4 +147,7 @@ p.about{
 .ship-placement-form>:nth-child(4){
   display: grid;
   align-items: center;
+}
+.play-btn{
+  justify-self: normal;
 }

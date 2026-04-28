@@ -129,4 +129,9 @@ export function loadGame(){
     submitBtnDiv.appendChild(submitBtn);
     shipControlForm.appendChild(submitBtnDiv);
     gameBox.appendChild(shipControlForm);
+
+    const playBtn = document.createElement('button');
+    playBtn.classList.add('play-btn');
+    playBtn.textContent = 'Play';
+    gameBox.appendChild(playBtn);
 }
