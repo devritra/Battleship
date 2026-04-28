@@ -228,26 +228,36 @@ export class Gameboard {
     }
     placeCarrier(coordinates, direction) {
         const carrier = this.carrier();
+        carrier.startingPosition = coordinates;
+        carrier.directionFromStartingPosition = direction;
         this.placeShipOnGrid(carrier, coordinates, direction);
         this.ships.push(carrier);
     }
     placeBattleship(coordinates, direction) {
         const battleship = this.battleship();
+        battleship.startingPosition = coordinates;
+        battleship.directionFromStartingPosition = direction;
         this.placeShipOnGrid(battleship, coordinates, direction);
         this.ships.push(battleship);
     }
     placeDestroyer(coordinates, direction) {
         const destroyer = this.destroyer();
+        destroyer.startingPosition = coordinates;
+        destroyer.directionFromStartingPosition = direction;
         this.placeShipOnGrid(destroyer, coordinates, direction);
         this.ships.push(destroyer);
     }
     placeSubmarine(coordinates, direction) {
         const submarine = this.submarine();
+        submarine.startingPosition = coordinates;
+        submarine.directionFromStartingPosition = direction;
         this.placeShipOnGrid(submarine, coordinates, direction);
         this.ships.push(submarine);
     }
     placePatrolBoat(coordinates, direction) {
         const patrolBoat = this.patrolBoat();
+        patrolBoat.startingPosition = coordinates;
+        patrolBoat.directionFromStartingPosition = direction;
         this.placeShipOnGrid(patrolBoat, coordinates, direction);
         this.ships.push(patrolBoat);
     }
