@@ -20,50 +20,58 @@ startGameBtn.addEventListener('click',()=>{
 })
 
 body.addEventListener('click',(e)=>{
-    if(e.target.closest('.ship-div')){
-        const errorText = document.querySelector('.error-text');
-        errorText.textContent = '';
-        targetShip = player1.wholeGameboardInstance.ships.find((ship)=>{
-            return e.target.closest('.ship-div').dataset.shipId === ship.shipId;
-        })
-        const shipNameBox = document.querySelector('.ship-name-box');
-        shipNameBox.textContent = targetShip.type;
-
-        const shipCoordinateVerticle = document.querySelector('#ship-coordinates-verticle');
-        const shipCoordinateHorizontal = document.querySelector('#ship-coordinates-horizontal');
-        const shipCoordinates = targetShip.startingPosition;
-        shipCoordinateVerticle.value = shipCoordinates[0];
-        shipCoordinateHorizontal.value = shipCoordinates[1];
-
-        const shipDirectionInput = document.querySelector('#ship-direction-input');
-        shipDirectionInput.value = targetShip.directionFromStartingPosition;
-        enableFormElements();
-    } else if(e.target.className === 'submit-btn'){
-        e.preventDefault();
-        const shipCoordinateVerticle = document.querySelector('#ship-coordinates-verticle');
-        const shipCoordinateHorizontal = document.querySelector('#ship-coordinates-horizontal');
-        const shipDirectionInput = document.querySelector('#ship-direction-input');
-
-        try {
-            player1.wholeGameboardInstance.moveShip(
-                targetShip.shipId,
-                [Number(shipCoordinateVerticle.value),Number(shipCoordinateHorizontal.value)],
-                shipDirectionInput.value
-            );
-        } catch (error) {
+    if(gamePhase === 'prep'){
+        if(e.target.closest('.ship-div')){
             const errorText = document.querySelector('.error-text');
-            errorText.textContent = error;
-            player1.wholeGameboardInstance.ships.push(targetShip);
-        }
-        
-        displayShipsOnGrids(player1);
-        loadForm();
-        disableFormElements();
-    } else if(e.target.className === 'play-btn'){
-        const gameBox = document.querySelector('.game-box');
-        const shipControlForm = document.querySelector('.ship-placement-form');
-        gameBox.removeChild(shipControlForm);
-        gameBox.removeChild(e.target);
-        loadScoreBoard();
+            errorText.textContent = '';
+            targetShip = player1.wholeGameboardInstance.ships.find((ship)=>{
+                return e.target.closest('.ship-div').dataset.shipId === ship.shipId;
+            })
+            const shipNameBox = document.querySelector('.ship-name-box');
+            shipNameBox.textContent = targetShip.type;
+
+            const shipCoordinateVerticle = document.querySelector('#ship-coordinates-verticle');
+            const shipCoordinateHorizontal = document.querySelector('#ship-coordinates-horizontal');
+            const shipCoordinates = targetShip.startingPosition;
+            shipCoordinateVerticle.value = shipCoordinates[0];
+            shipCoordinateHorizontal.value = shipCoordinates[1];
+
+            const shipDirectionInput = document.querySelector('#ship-direction-input');
+            shipDirectionInput.value = targetShip.directionFromStartingPosition;
+            enableFormElements();
+        } else if(e.target.className === 'submit-btn'){
+            e.preventDefault();
+            const shipCoordinateVerticle = document.querySelector('#ship-coordinates-verticle');
+            const shipCoordinateHorizontal = document.querySelector('#ship-coordinates-horizontal');
+            const shipDirectionInput = document.querySelector('#ship-direction-input');
+
+            try {
+                player1.wholeGameboardInstance.moveShip(
+                    targetShip.shipId,
+                    [Number(shipCoordinateVerticle.value),Number(shipCoordinateHorizontal.value)],
+                    shipDirectionInput.value
+                );
+            } catch (error) {
+                const errorText = document.querySelector('.error-text');
+                errorText.textContent = error;
+                player1.wholeGameboardInstance.ships.push(targetShip);
+            }
+            
+            displayShipsOnGrids(player1);
+            loadForm();
+            disableFormElements();
+        } else if(e.target.className === 'play-btn'){
+            const gameBox = document.querySelector('.game-box');
+            const shipControlForm = document.querySelector('.ship-placement-form');
+            gameBox.removeChild(shipControlForm);
+            gameBox.removeChild(e.target);
+            loadScoreBoard();
+            gamePhase = 'match';
+        }        
     }
+    if(gamePhase === 'match'){
+
+    }
+
+
 })
