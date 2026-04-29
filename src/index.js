@@ -4,6 +4,7 @@ import { Player } from './Player';
 import { displayShipsOnGrids } from './displayShipsOnGrids';
 import { loadForm } from './loadForm';
 import { enableFormElements, disableFormElements } from './enableOrDiableForm';
+import { loadScoreBoard } from './loadScoreBoard';
 
 const startGameBtn = document.querySelector('.start-game-btn');
 const body = document.querySelector('body');
@@ -58,5 +59,11 @@ body.addEventListener('click',(e)=>{
         displayShipsOnGrids(player1);
         loadForm();
         disableFormElements();
+    } else if(e.target.className === 'play-btn'){
+        const gameBox = document.querySelector('.game-box');
+        const shipControlForm = document.querySelector('.ship-placement-form');
+        gameBox.removeChild(shipControlForm);
+        gameBox.removeChild(e.target);
+        loadScoreBoard();
     }
 })

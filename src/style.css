@@ -151,3 +151,20 @@ p.about{
 .play-btn{
   justify-self: normal;
 }
+.main-score-board-div{
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr;
+  width: 100%;
+  grid-column: 1/4;
+  gap: 10px;
+}
+.player1-score-board-div,
+.player2-score-board-div{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+}
+.player1-score-name,
+.player2-score-name{
+  grid-column: 1/3;
+}
