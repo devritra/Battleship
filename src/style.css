@@ -116,10 +116,10 @@ p.about{
   display: grid;
   grid-template-rows: 1fr 1fr;
 }
-/* .ship-name-box{
-  height: 20px;
+.ship-name-box{
+  padding-left: 5px
 }
-.ship-placement-form>div>p{
+/* .ship-placement-form>div>p{
   height: 25px;
 } */
 .ship-placement-form>:nth-child(2){

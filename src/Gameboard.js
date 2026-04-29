@@ -154,6 +154,19 @@ export class Gameboard {
             return ship.shipId === shipId;
         });
         const targetShipType = this.ships[targetShipIndex].type;
+        if(targetShipType === 'patrol boat'){
+            let divided = targetShipType.split(' ');
+            let temp1 = divided[0].split('');
+            let temp2 = divided[1].split('');
+            temp1[0] = divided[0].charAt(0).toUpperCase();
+            temp2[0] = divided[1].charAt(0).toUpperCase();
+            const temp1Capitalized = temp1.join('');
+            const temp2Capitalized = temp2.join('');
+            const targetShipTypeFirstLetterCapitalised = `${temp1Capitalized}${temp2Capitalized}`;
+            this.ships.splice(targetShipIndex, 1);
+            this[`place${targetShipTypeFirstLetterCapitalised}`](coordinates, direction);
+            return;
+        }
         let temp = targetShipType.split('');
         temp[0] = targetShipType.charAt(0).toUpperCase();
         const targetShipTypeFirstLetterCapitalised = temp.join('');

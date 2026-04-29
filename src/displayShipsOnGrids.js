@@ -44,12 +44,17 @@ export function displayShipsOnGrids(player1){
     const player1Ships = player1.wholeGameboardInstance.ships;
     const player1Grid = document.querySelector('.player1-grid');
     const player1GridCells = Array.from(player1Grid.childNodes);
+    player1GridCells.forEach(cell => {
+        cell.innerHTML = '';
+    });
     player1Ships.forEach(ship => {
         const targetGridCell = player1GridCells.find((cell)=>{
             return JSON.stringify(ship.startingPosition) === cell.dataset.coordinates;
         });
         targetGridCell.style.position = 'relative';
         const shipDiv = document.createElement('div');
+        shipDiv.dataset.shipId = ship.shipId;
+        shipDiv.classList.add('ship-div');
         // shipDiv.style.height = '30px';
         // shipDiv.style.width = `${30 * ship.length}px`;
         shipDiv.style.backgroundColor = 'yellow';
