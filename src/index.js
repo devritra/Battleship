@@ -20,6 +20,8 @@ startGameBtn.addEventListener('click',()=>{
 
 body.addEventListener('click',(e)=>{
     if(e.target.closest('.ship-div')){
+        const errorText = document.querySelector('.error-text');
+        errorText.textContent = '';
         targetShip = player1.wholeGameboardInstance.ships.find((ship)=>{
             return e.target.closest('.ship-div').dataset.shipId === ship.shipId;
         })
@@ -41,13 +43,20 @@ body.addEventListener('click',(e)=>{
         const shipCoordinateHorizontal = document.querySelector('#ship-coordinates-horizontal');
         const shipDirectionInput = document.querySelector('#ship-direction-input');
 
-        player1.wholeGameboardInstance.moveShip(
-            targetShip.shipId,
-            [Number(shipCoordinateVerticle.value),Number(shipCoordinateHorizontal.value)],
-            shipDirectionInput.value
-        );
+        try {
+            player1.wholeGameboardInstance.moveShip(
+                targetShip.shipId,
+                [Number(shipCoordinateVerticle.value),Number(shipCoordinateHorizontal.value)],
+                shipDirectionInput.value
+            );
+        } catch (error) {
+            const errorText = document.querySelector('.error-text');
+            errorText.textContent = error;
+            player1.wholeGameboardInstance.ships.push(targetShip);
+        }
+        
         displayShipsOnGrids(player1);
         loadForm();
-        disableFormElements()
+        disableFormElements();
     }
 })
