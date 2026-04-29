@@ -3,6 +3,7 @@ import { loadGame } from './loadGame';
 import { Player } from './Player';
 import { displayShipsOnGrids } from './displayShipsOnGrids';
 import { loadForm } from './loadForm';
+import { enableFormElements, disableFormElements } from './enableOrDiableForm';
 
 const startGameBtn = document.querySelector('.start-game-btn');
 const body = document.querySelector('body');
@@ -33,6 +34,7 @@ body.addEventListener('click',(e)=>{
 
         const shipDirectionInput = document.querySelector('#ship-direction-input');
         shipDirectionInput.value = targetShip.directionFromStartingPosition;
+        enableFormElements();
     } else if(e.target.className === 'submit-btn'){
         e.preventDefault();
         const shipCoordinateVerticle = document.querySelector('#ship-coordinates-verticle');
@@ -46,5 +48,6 @@ body.addEventListener('click',(e)=>{
         );
         displayShipsOnGrids(player1);
         loadForm();
+        disableFormElements()
     }
 })

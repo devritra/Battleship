@@ -128,6 +128,10 @@ export function loadGame(){
     submitBtn.textContent = 'Confirm';
     submitBtnDiv.appendChild(submitBtn);
     shipControlForm.appendChild(submitBtnDiv);
+    shipCoordinateVerticle.disabled = true;
+    shipCoordinateHorizontal.disabled = true;
+    shipDirectionInput.disabled = true;
+    submitBtn.disabled = true;
     gameBox.appendChild(shipControlForm);
 
     const playBtn = document.createElement('button');
