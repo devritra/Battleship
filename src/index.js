@@ -2,6 +2,7 @@ import './style.css';
 import { loadGame } from './loadGame';
 import { Player } from './Player';
 import { displayShipsOnGrids } from './displayShipsOnGrids';
+import { loadForm } from './loadForm';
 
 const startGameBtn = document.querySelector('.start-game-btn');
 const body = document.querySelector('body');
@@ -44,5 +45,6 @@ body.addEventListener('click',(e)=>{
             shipDirectionInput.value
         );
         displayShipsOnGrids(player1);
+        loadForm();
     }
 })
