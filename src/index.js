@@ -99,7 +99,7 @@ body.addEventListener('click',(e)=>{
                         player1.wholeGameboardInstance.receiveAttack(targetCoordinates);
                     } catch (error) {
                         errorText.textContent = error;
-                        setTimeout( playComputerTurn(), 2000);
+                        setTimeout( playComputerTurn, 1000);
                         return;
                     }
                     const player1Ships = player1.wholeGameboardInstance.ships;
@@ -126,7 +126,7 @@ body.addEventListener('click',(e)=>{
                         player1.wholeGameboardInstance.receiveAttack(targetCoordinates);
                     } catch (error) {
                         errorText.textContent = error;
-                        setTimeout( playComputerTurn(), 2000);
+                        setTimeout( playComputerTurn, 1000);
                         return;
                     }
                     e.target.style.backgroundColor = 'green';
@@ -167,7 +167,7 @@ body.addEventListener('click',(e)=>{
                 player1Turn = false;
                 player2Turn = true;
                 guideText.textContent = `Player 2's trun`;
-                setTimeout( playComputerTurn(), 2000);
+                setTimeout( playComputerTurn, 1000);
             }   
         }
     }
