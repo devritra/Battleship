@@ -141,7 +141,7 @@ body.addEventListener('click',(e)=>{
                     guideText.textContent = `Player 1's trun`;
                 }
             } else if (player1Turn && e.target.closest('.player2-grid')){
-                const targetCoordinates = JSON.parse(e.target.dataset.coordinates);
+                const targetCoordinates = JSON.parse(e.target.closest('.gameboard-cell').dataset.coordinates);
                 try {
                     player2.wholeGameboardInstance.receiveAttack(targetCoordinates);
                 } catch (error) {
