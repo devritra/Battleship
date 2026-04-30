@@ -13,12 +13,12 @@ export function loadForm(){
     const shipCoordinateDiv = document.createElement('div');
     const shipCoordinateLabelVerticle = document.createElement('label');
     shipCoordinateLabelVerticle.classList.add('ship-coordinates-label-verticle');
-    shipCoordinateLabelVerticle.textContent = 'Verticle';
+    shipCoordinateLabelVerticle.textContent = 'Top to Down';
     shipCoordinateDiv.appendChild(shipCoordinateLabelVerticle);
     shipCoordinateLabelVerticle.htmlFor = 'ship-coordinates-verticle';
     const shipCoordinateLabelHorizontal = document.createElement('label');
     shipCoordinateLabelHorizontal.classList.add('ship-coordinates-label-horizontal');
-    shipCoordinateLabelHorizontal.textContent = 'Horizontal';
+    shipCoordinateLabelHorizontal.textContent = 'Left to Right';
     shipCoordinateDiv.appendChild(shipCoordinateLabelHorizontal);
     shipCoordinateLabelHorizontal.htmlFor = 'ship-coordinates-horizontal';
     const shipCoordinateVerticle = document.createElement('input');

@@ -5,6 +5,7 @@ import { displayShipsOnGrids } from './displayShipsOnGrids';
 import { loadForm } from './loadForm';
 import { enableFormElements, disableFormElements } from './enableOrDiableForm';
 import { loadScoreBoard } from './loadScoreBoard';
+import { playComputerTurn } from './playComputerTurn';
 
 const startGameBtn = document.querySelector('.start-game-btn');
 const body = document.querySelector('body');
@@ -76,6 +77,16 @@ body.addEventListener('click',(e)=>{
     if(gamePhase === 'match'){
         const errorText = document.querySelector('.error-text');
         const guideText = document.querySelector('.guide-text');
+        if(e.target.className === 'reset-btn'){
+            player1 = new Player('human');
+            player2 = new Player('computer');
+            loadGame();
+            displayShipsOnGrids(player1);
+            gamePhase = 'prep';
+            player1Turn = true;
+            player2Turn = false;
+            isGameOver = false;
+        }
         if(isGameOver){
             return;
         }
@@ -88,6 +99,7 @@ body.addEventListener('click',(e)=>{
                         player1.wholeGameboardInstance.receiveAttack(targetCoordinates);
                     } catch (error) {
                         errorText.textContent = error;
+                        setTimeout( playComputerTurn(), 2000);
                         return;
                     }
                     const player1Ships = player1.wholeGameboardInstance.ships;
@@ -103,6 +115,7 @@ body.addEventListener('click',(e)=>{
                     if(noOfShipsSunk === 10){
                         guideText.textContent = 'Player 2 has won!';
                         isGameOver = true;
+                        return;
                     }
                     player1Turn = true;
                     player2Turn = false;
@@ -113,6 +126,7 @@ body.addEventListener('click',(e)=>{
                         player1.wholeGameboardInstance.receiveAttack(targetCoordinates);
                     } catch (error) {
                         errorText.textContent = error;
+                        setTimeout( playComputerTurn(), 2000);
                         return;
                     }
                     e.target.style.backgroundColor = 'green';
@@ -145,6 +159,7 @@ body.addEventListener('click',(e)=>{
                     if(noOfShipsSunk === 10){
                         guideText.textContent = 'Player 1 has won!';
                         isGameOver = true;
+                        return;
                     }
                 } else{
                     e.target.style.backgroundColor = 'green';
@@ -152,15 +167,8 @@ body.addEventListener('click',(e)=>{
                 player1Turn = false;
                 player2Turn = true;
                 guideText.textContent = `Player 2's trun`;
+                setTimeout( playComputerTurn(), 2000);
             }   
-        } else if(e.target.className === 'reset-btn'){
-            player1 = new Player('human');
-            player2 = new Player('computer');
-            loadGame();
-            displayShipsOnGrids(player1);
-            gamePhase = 'prep';
-            player1Turn = true;
-            player2Turn = false;
         }
     }
 
