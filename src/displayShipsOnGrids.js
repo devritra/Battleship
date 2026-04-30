@@ -57,7 +57,6 @@ export function displayShipsOnGrids(player1){
         shipDiv.classList.add('ship-div');
         // shipDiv.style.height = '30px';
         // shipDiv.style.width = `${30 * ship.length}px`;
-        shipDiv.style.backgroundColor = 'yellow';
         shipDiv.style.display = 'grid';
         for(let i = 0; i < ship.length; i++){
             const div = document.createElement('div');
