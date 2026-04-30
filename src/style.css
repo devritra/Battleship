@@ -192,6 +192,9 @@ p.about{
 }
 .gameboard-cell{
   background-color: white;
+  height: 29px;
+  display: grid;
+  place-content: center;
 }
 .ship-name-box{
   background-color: rgb(203, 203, 203);
@@ -206,4 +209,8 @@ p.about{
 #ship-coordinates-horizontal{
   border-style: solid;
   border-color: var(--left-to-right-blue);
+}
+.yawn{
+  height: 100%;
+  width: 100%;
 }

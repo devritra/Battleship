@@ -6,6 +6,10 @@ import { loadForm } from './loadForm';
 import { enableFormElements, disableFormElements } from './enableOrDiableForm';
 import { loadScoreBoard } from './loadScoreBoard';
 import { playComputerTurn } from './playComputerTurn';
+import player1HitIcon from './images/player1-hit-icon.jpg';
+import player1MissIcon from './images/player1-miss-icon.jpeg';
+import player2HitIcon from './images/player2-hit-icon.png';
+import player2MissIcon from './images/player2-miss-icon.png';
 
 const startGameBtn = document.querySelector('.start-game-btn');
 const body = document.querySelector('body');
@@ -97,8 +101,7 @@ body.addEventListener('click',(e)=>{
                     const targetCoordinates = JSON.parse(e.target.dataset.coordinates);
                     try {
                         player1.wholeGameboardInstance.receiveAttack(targetCoordinates);
-                    } catch (error) {
-                        errorText.textContent = error;
+                    } catch {
                         setTimeout( playComputerTurn, 1000);
                         return;
                     }
@@ -111,7 +114,9 @@ body.addEventListener('click',(e)=>{
                     })
                     const player1Score = document.querySelector('.player1-score');
                     player1Score.textContent = noOfShipsSunk;
-                    e.target.style.backgroundColor = 'red';
+                    const player1HitIconImg = new Image();
+                    player1HitIconImg.src = player1HitIcon;
+                    e.target.appendChild(player1HitIconImg);
                     if(noOfShipsSunk === 10){
                         guideText.textContent = 'Player 2 has won!';
                         isGameOver = true;
@@ -124,12 +129,13 @@ body.addEventListener('click',(e)=>{
                     const targetCoordinates = e.target.dataset.coordinates;
                     try {
                         player1.wholeGameboardInstance.receiveAttack(targetCoordinates);
-                    } catch (error) {
-                        errorText.textContent = error;
+                    } catch {
                         setTimeout( playComputerTurn, 1000);
                         return;
                     }
-                    e.target.style.backgroundColor = 'green';
+                    const player1MissIconImg = new Image();
+                    player1MissIconImg.src = player1MissIcon;
+                    e.target.appendChild(player1MissIconImg);
                     player1Turn = true;
                     player2Turn = false;
                     guideText.textContent = `Player 1's trun`;
@@ -155,14 +161,18 @@ body.addEventListener('click',(e)=>{
                     })
                     const player2Score = document.querySelector('.player2-score');
                     player2Score.textContent = noOfShipsSunk;
-                    e.target.style.backgroundColor = 'red';
+                    const player2HitIconImg = new Image();
+                    player2HitIconImg.src = player2HitIcon;
+                    e.target.appendChild(player2HitIconImg);
                     if(noOfShipsSunk === 10){
                         guideText.textContent = 'Player 1 has won!';
                         isGameOver = true;
                         return;
                     }
                 } else{
-                    e.target.style.backgroundColor = 'green';
+                    const player2MissIconImg = new Image();
+                    player2MissIconImg.src = player2MissIcon;
+                    e.target.appendChild(player2MissIconImg);
                 }
                 player1Turn = false;
                 player2Turn = true;
