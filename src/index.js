@@ -10,8 +10,11 @@ const startGameBtn = document.querySelector('.start-game-btn');
 const body = document.querySelector('body');
 let gamePhase;
 let targetShip;
-const player1 = new Player('human');
-// const player2 = new Player('computer');
+let isGameOver;
+let player1Turn = true;
+let player2Turn = false;
+let player1 = new Player('human');
+let player2 = new Player('computer');
 
 startGameBtn.addEventListener('click',()=>{
     loadGame();
@@ -21,8 +24,9 @@ startGameBtn.addEventListener('click',()=>{
 
 body.addEventListener('click',(e)=>{
     if(gamePhase === 'prep'){
+        const errorText = document.querySelector('.error-text');
+        const guideText = document.querySelector('.guide-text');
         if(e.target.closest('.ship-div')){
-            const errorText = document.querySelector('.error-text');
             errorText.textContent = '';
             targetShip = player1.wholeGameboardInstance.ships.find((ship)=>{
                 return e.target.closest('.ship-div').dataset.shipId === ship.shipId;
@@ -52,7 +56,6 @@ body.addEventListener('click',(e)=>{
                     shipDirectionInput.value
                 );
             } catch (error) {
-                const errorText = document.querySelector('.error-text');
                 errorText.textContent = error;
                 player1.wholeGameboardInstance.ships.push(targetShip);
             }
@@ -67,10 +70,98 @@ body.addEventListener('click',(e)=>{
             gameBox.removeChild(e.target);
             loadScoreBoard();
             gamePhase = 'match';
+            guideText.textContent = `Player 1's trun`;
         }        
     }
     if(gamePhase === 'match'){
-
+        const errorText = document.querySelector('.error-text');
+        const guideText = document.querySelector('.guide-text');
+        if(isGameOver){
+            return;
+        }
+        if(e.target.closest('.gameboard-cell')){
+            errorText.textContent = '';
+            if(player2Turn && e.target.closest('.player1-grid')){
+                if(e.target.closest('.ship-div')){
+                    const targetCoordinates = JSON.parse(e.target.dataset.coordinates);
+                    try {
+                        player1.wholeGameboardInstance.receiveAttack(targetCoordinates);
+                    } catch (error) {
+                        errorText.textContent = error;
+                        return;
+                    }
+                    const player1Ships = player1.wholeGameboardInstance.ships;
+                    let noOfShipsSunk = 0;
+                    player1Ships.forEach((ship)=>{
+                        if(ship.isSunk){
+                            noOfShipsSunk++;
+                        }
+                    })
+                    const player1Score = document.querySelector('.player1-score');
+                    player1Score.textContent = noOfShipsSunk;
+                    e.target.style.backgroundColor = 'red';
+                    if(noOfShipsSunk === 10){
+                        guideText.textContent = 'Player 2 has won!';
+                        isGameOver = true;
+                    }
+                    player1Turn = true;
+                    player2Turn = false;
+                    guideText.textContent = `Player 1's trun`;
+                } else {
+                    const targetCoordinates = e.target.dataset.coordinates;
+                    try {
+                        player1.wholeGameboardInstance.receiveAttack(targetCoordinates);
+                    } catch (error) {
+                        errorText.textContent = error;
+                        return;
+                    }
+                    e.target.style.backgroundColor = 'green';
+                    player1Turn = true;
+                    player2Turn = false;
+                    guideText.textContent = `Player 1's trun`;
+                }
+            } else if (player1Turn && e.target.closest('.player2-grid')){
+                const targetCoordinates = JSON.parse(e.target.dataset.coordinates);
+                try {
+                    player2.wholeGameboardInstance.receiveAttack(targetCoordinates);
+                } catch (error) {
+                    errorText.textContent = error;
+                    return;
+                }
+                const isHit = player2.wholeGameboardInstance.hitShots.some((coordinates)=>{
+                    return coordinates === targetCoordinates;
+                })
+                if(isHit){
+                    const player2Ships = player2.wholeGameboardInstance.ships;
+                    let noOfShipsSunk = 0;
+                    player2Ships.forEach((ship)=>{
+                        if(ship.isSunk){
+                            noOfShipsSunk++;
+                        }
+                    })
+                    const player2Score = document.querySelector('.player2-score');
+                    player2Score.textContent = noOfShipsSunk;
+                    e.target.style.backgroundColor = 'red';
+                    if(noOfShipsSunk === 10){
+                        guideText.textContent = 'Player 1 has won!';
+                        isGameOver = true;
+                    }
+                } else{
+                    e.target.style.backgroundColor = 'green';
+                }
+                player1Turn = false;
+                player2Turn = true;
+                guideText.textContent = `Player 2's trun`;
+            }   
+        } else if(e.target.className === 'reset-btn'){
+            player1 = new Player('human');
+            player2 = new Player('computer');
+            loadGame();
+            displayShipsOnGrids(player1);
+            gamePhase = 'prep';
+            player1Turn = true;
+            player2Turn = false;
+        }
     }
 
 

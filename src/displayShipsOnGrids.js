@@ -61,6 +61,8 @@ export function displayShipsOnGrids(player1){
         shipDiv.style.display = 'grid';
         for(let i = 0; i < ship.length; i++){
             const div = document.createElement('div');
+            div.classList.add('ship-cell');
+            div.dataset.coordinates = `[${ship.shipCoordinates[i]}]`;
             shipDiv.appendChild(div);
         }
         shipDiv.style.position = 'absolute';

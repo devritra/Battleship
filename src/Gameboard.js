@@ -29,8 +29,9 @@ export class Gameboard {
                     if (this.ships.length < 1) {
                         ship.shipCoordinates.push([i, coordinates[1]]);
                     } else {
+                        let isValid;
                         for (let j = 0; j < this.ships.length; j++) {
-                            let isValid = this.ships[
+                            isValid = this.ships[
                                 j
                             ].shipCoordinates.some((coordinate) => {
                                 return (
@@ -39,12 +40,15 @@ export class Gameboard {
                                 );
                             });
                             if (isValid) {
-                                throw new Error(
-                                    'Coordinate already occupied by another ship'
-                                );
-                            } else {
-                                ship.shipCoordinates.push([i, coordinates[1]]);
+                                break;
                             }
+                        }
+                        if (isValid) {
+                            throw new Error(
+                                'Coordinate already occupied by another ship'
+                            );
+                        } else {
+                            ship.shipCoordinates.push([i, coordinates[1]]);
                         }
                     }
                 }
@@ -61,8 +65,9 @@ export class Gameboard {
                     if (this.ships.length < 1) {
                         ship.shipCoordinates.push([coordinates[0], i]);
                     } else {
+                        let isValid
                         for (let j = 0; j < this.ships.length; j++) {
-                            let isValid = this.ships[
+                            isValid = this.ships[
                                 j
                             ].shipCoordinates.some((coordinate) => {
                                 return (
@@ -71,12 +76,15 @@ export class Gameboard {
                                 );
                             });
                             if (isValid) {
-                                throw new Error(
-                                    'Coordinate already occupied by another ship'
-                                );
-                            } else {
-                                ship.shipCoordinates.push([coordinates[0], i]);
+                                break;
                             }
+                        }
+                        if (isValid) {
+                            throw new Error(
+                                'Coordinate already occupied by another ship'
+                            );
+                        } else {
+                            ship.shipCoordinates.push([coordinates[0], i]);
                         }
                     }
                 }
@@ -93,8 +101,9 @@ export class Gameboard {
                     if (this.ships.length < 1) {
                         ship.shipCoordinates.push([i, coordinates[1]]);
                     } else {
+                        let isValid;
                         for (let j = 0; j < this.ships.length; j++) {
-                            let isValid = this.ships[
+                            isValid = this.ships[
                                 j
                             ].shipCoordinates.some((coordinate) => {
                                 return (
@@ -103,12 +112,15 @@ export class Gameboard {
                                 );
                             });
                             if (isValid) {
-                                throw new Error(
-                                    'Coordinate already occupied by another ship'
-                                );
-                            } else {
-                                ship.shipCoordinates.push([i, coordinates[1]]);
+                                break;
                             }
+                        }
+                        if (isValid) {
+                            throw new Error(
+                                'Coordinate already occupied by another ship'
+                            );
+                        } else {
+                            ship.shipCoordinates.push([i, coordinates[1]]);
                         }
                     }
                 }
@@ -125,8 +137,9 @@ export class Gameboard {
                     if (this.ships.length < 1) {
                         ship.shipCoordinates.push([coordinates[0], i]);
                     } else {
+                        let isValid
                         for (let j = 0; j < this.ships.length; j++) {
-                            let isValid = this.ships[
+                            isValid = this.ships[
                                 j
                             ].shipCoordinates.some((coordinate) => {
                                 return (
@@ -135,12 +148,15 @@ export class Gameboard {
                                 );
                             });
                             if (isValid) {
-                                throw new Error(
-                                    'Coordinate already occupied by another ship'
-                                );
-                            } else {
-                                ship.shipCoordinates.push([coordinates[0], i]);
+                                break;
                             }
+                        }
+                        if (isValid) {
+                            throw new Error(
+                                'Coordinate already occupied by another ship'
+                            );
+                        } else {
+                            ship.shipCoordinates.push([coordinates[0], i]);
                         }
                     }
                 }

@@ -16,7 +16,7 @@ export function loadScoreBoard(){
     player1ScoreText.textContent = 'No of ship sunk:';
     const player1Score = document.createElement('p');
     player1Score.classList.add('player1-score');
-    player1Score.textContent = '1';
+    player1Score.textContent = '0';
     player1ScoreBoardDiv.appendChild(player1ScoreName);
     player1ScoreBoardDiv.appendChild(player1ScoreText);
     player1ScoreBoardDiv.appendChild(player1Score);
@@ -29,7 +29,7 @@ export function loadScoreBoard(){
     player2ScoreText.textContent = 'No of ship sunk:';
     const player2Score = document.createElement('p');
     player2Score.classList.add('player2-score');
-    player2Score.textContent = '1';
+    player2Score.textContent = '0';
     player2ScoreBoardDiv.appendChild(player2ScoreName);
     player2ScoreBoardDiv.appendChild(player2ScoreText);
     player2ScoreBoardDiv.appendChild(player2Score);

@@ -22,4 +22,39 @@ export class Player{
         gameboard.getTheGrid();
         return gameboard;
     }
+
+//     getRandomCoordinates(){
+//         return [Math.random() * 10, Math.random() * 10]
+//     }
+//     getRandomDirections(){
+//         const key = Math.floor(Math.random() * 4);
+//         switch (key) {
+//             case 0:
+//                 return 'up'
+//             case 1:
+//                 return 'right'
+//             case 2:
+//                 return 'down'
+//             case 3:
+//                 return 'left'
+//             default:
+//                 break;
+//         }
+//     }
+//     randomizeGameboard(){
+//         const gameboard = new Gameboard();
+//         gameboard.placeCarrier(this.getRandomCoordinates(),this.getRandomDirections());
+//         gameboard.placeBattleship(this.getRandomCoordinates(),this.getRandomDirections());
+//         gameboard.placeBattleship(this.getRandomCoordinates(),this.getRandomDirections());
+//         gameboard.placeDestroyer(this.getRandomCoordinates(),this.getRandomDirections());
+//         gameboard.placeSubmarine(this.getRandomCoordinates(),this.getRandomDirections());
+//         gameboard.placeSubmarine(this.getRandomCoordinates(),this.getRandomDirections());
+//         gameboard.placePatrolBoat(this.getRandomCoordinates(),this.getRandomDirections())
+//         gameboard.placePatrolBoat(this.getRandomCoordinates(),this.getRandomDirections())
+//         gameboard.placePatrolBoat(this.getRandomCoordinates(),this.getRandomDirections())
+//         gameboard.placePatrolBoat(this.getRandomCoordinates(),this.getRandomDirections());
+//         gameboard.getTheGrid();
+//         this.wholeGameboardInstance = gameboard;
+//         return;
+//     }
 }
